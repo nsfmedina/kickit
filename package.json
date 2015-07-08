@@ -1,0 +1,17 @@
+{
+  "name": "grunt-workflow",
+  "version": "0.3.0",
+  "description": "Personal automated workflow using Grunt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucas-medina/grunt-workflow.git"
+  },
+  "keywords": [
+    "Grunt",
+    "workflow",
+    "automated"
+  ],
+  "author": "Lucas Medina",
+  "license": "ISC",
+  "homepage": "https://github.com/lucas-medina/grunt-workflow#readme"
+}
