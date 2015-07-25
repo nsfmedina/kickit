@@ -4,7 +4,7 @@ Personal, automated workflow with Grunt for page building and other common front
 ## Introduction
 Medina Workflow is a Grunt-based workflow automation to make things on the go. It is my personal method of setting a initial project that works fine with every new project based on HTML, CSS and Javascript.
 
-## Specification
+### Specification
 Medina Workflow uses the following Grunt plugins within its settings:
 
 - grunt-contrib-imagemin
@@ -17,7 +17,7 @@ Medina Workflow uses the following Grunt plugins within its settings:
 
 Be sure to have Node, NPM, Ruby and Sass already installed.
 
-## How to use
+### How to use
 Medina Workflow was originally built thinking about how projects could be started more quickly.
 In order to use Medina Workflow as your project base, follow the steps below:
 
