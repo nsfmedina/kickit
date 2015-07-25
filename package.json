@@ -1,5 +1,5 @@
 {
-  "name": "grunt-workflow",
+  "name": "medina-workflow",
   "version": "0.5.4",
   "description": "Personal automated workflow using Grunt",
   "repository": {
