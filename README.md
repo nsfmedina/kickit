@@ -1,4 +1,4 @@
-# medina-workflow
+# Medina Workflow
 Personal, automated workflow with Grunt for page building and other common front-end tasks.
 
 ## Introduction
