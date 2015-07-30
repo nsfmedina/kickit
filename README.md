@@ -22,21 +22,18 @@ Medina Workflow was originally built thinking about how projects could be starte
 In order to use Medina Workflow as your project base, follow the steps below:
 
 1. Clone or download this Github repository:
-
 ```
 git clone https://github.com/lucas-medina/medina-workflow.git
 ```
-
 2. Install the project dependencies through command line.
 
 ```
 npm install
 ```
-
 3. Execute the tasks through these simple commands:
 
-- `grunt`, used to set every new file into the /build folder, that will be created for your project.
-- `grunt update`, used to enable connection to *localhost:2208* and also watch for new changes on your /src folder, updating previews and soon as changes are made.
-- `grunt finish`, which will set your files on the /build folder and remove logs from your Javascript file.
+- `grunt`: used to set every new file into the /build folder, that will be created for your project.
+- `grunt update`: used to enable connection to *localhost:2208* and also watch for new changes on your /src folder, updating previews and soon as changes are made.
+- `grunt finish`: which will set your files on the /build folder and remove logs from your Javascript file.
 
 Current version is **0.6.4**. More information will be coming in time.
