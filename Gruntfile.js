@@ -24,15 +24,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		autoprefixer : {
-			options : {
-				browsers: ['last 2 versions', 'ie 8', 'ie 9']
-			},
-			files : {
-				'build/css/main.css' : 'build/css/main.css'
-			}
-		},
-
 		copy : {
 			thirdparty : {
 				expand : true,
@@ -70,44 +61,40 @@ module.exports = function(grunt) {
 		},
 
 		watch : {
+			options : {
+				livereload: true
+			},
+			index : {
+				files : ['index.html']
+			},
 			images : {
 				files : ['src/images/**'],
 				tasks : ['imagemin']
 			},
 			thirdparty : {
 				files : ['src/thirdparty/**'],
-				tasks : ['copy:thirdparty'],
-				options : {
-					livereload : true
-				}
+				tasks : ['copy:thirdparty']
 			},
 			css : {
 				files : ['src/sass/**'],
-				tasks : ['sass', 'autoprefixer'],
-				options : {
-					livereload : true
-				}
+				tasks : ['sass']
 			},
 			js : {
 				files : ['src/js/**'],
-				tasks : ['uglify:dist'],
-				options : {
-					livereload : true
-				}
+				tasks : ['uglify:dist']
 			}
 		}
 
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-contrib-sass');
-	grunt.loadNpmTasks('grunt-autoprefixer');
+	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['sass', 'autoprefixer', 'imagemin', 'copy', 'uglify:dist']);
+	grunt.registerTask('default', ['sass', 'imagemin', 'copy', 'uglify:dist']);
 	grunt.registerTask('update', ['connect', 'watch']);
-	grunt.registerTask('finish', ['sass', 'autoprefixer', 'imagemin', 'copy', 'uglify:finish']);
+	grunt.registerTask('finish', ['sass', 'imagemin', 'copy', 'uglify:finish']);
 }
