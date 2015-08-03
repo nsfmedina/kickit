@@ -25,9 +25,9 @@ module.exports = function(grunt) {
 		},
 
 		copy : {
-			thirdparty : {
+			external : {
 				expand : true,
-				cwd : 'src/thirdparty',
+				cwd : 'src/external',
 				src : '**',
 				dest  : 'build'
 			}
@@ -71,9 +71,9 @@ module.exports = function(grunt) {
 				files : ['src/images/**'],
 				tasks : ['imagemin']
 			},
-			thirdparty : {
-				files : ['src/thirdparty/**'],
-				tasks : ['copy:thirdparty']
+			external : {
+				files : ['src/external/**'],
+				tasks : ['copy:external']
 			},
 			css : {
 				files : ['src/sass/**'],
