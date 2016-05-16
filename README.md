@@ -1,5 +1,5 @@
 # Medina Workflow
-Personal, automated workflow with Grunt for page building and other common front-end tasks.
+Personal, automated workflow with Grunt for page building and other common design-to-code tasks.
 
 ## Introduction
 Medina Workflow is a Grunt-based workflow for automatizing tasks, in order to make new pages and projects on the go. It is my personal method of setting a initial project that works fine with every new project based on HTML, CSS and Javascript.
@@ -7,15 +7,15 @@ Medina Workflow is a Grunt-based workflow for automatizing tasks, in order to ma
 ### Specification
 Medina Workflow uses the following Grunt plugins within its settings:
 
-- grunt-contrib-connect;
-- grunt-sass (through node-sass and libsass library written with C language);
-	- Bourbon, a Sass Mixin Library that works well with libsass
+- grunt-sass
+- grunt-contrib-concat
 - grunt-contrib-copy
-- grunt-contrib-imagemin
 - grunt-contrib-uglify
 - grunt-contrib-watch
+- grunt-browser-sync
+- grunt-postcss
 
-Be sure to have Node, NPM, Ruby and Sass(Libsass) already installed.
+Be sure to have Node, NPM and Sass(Libsass) already installed.
 
 ### How to use
 Medina Workflow was originally built thinking about how projects could be started more quickly.

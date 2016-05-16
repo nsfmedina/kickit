@@ -1,20 +1,9 @@
 module.exports = function(grunt) {
 
 	grunt.initConfig({
-		
-		connect : {
-			server : {
-				options : {
-					port : 2208,
-					open : {
-						target : 'http://localhost:2208'
-					}
-				}
-			}
-		},
 
 		sass : {
-			dist : {
+			build : {
 				options : {
 					outputStyle : 'compact'
 				},
@@ -25,76 +14,96 @@ module.exports = function(grunt) {
 		},
 
 		copy : {
-			external : {
-				expand : true,
-				cwd : 'src/external',
-				src : '**',
-				dest  : 'build'
-			}
-		},
-
-		imagemin : {
-			dist : {
+			images : {
 				expand : true,
 				cwd : 'src/images/',
 				src : '**/*.*',
 				dest : 'build/images/'
+			},
+			index : {
+				cwd: 'src',
+				src: [ 'index.html' ],
+				dest: 'build',
+				expand: true
+			}
+		},
+
+		concat : {
+			js : {
+
 			}
 		},
 
 		uglify : {
-			dist : {
-				files : {
-					'build/js/main.min.js' : ['src/js/main.js']
-				}
-			},
-			finish : {
+			build : {
 				options : {
+					beautify : true,
+					mangle: false,
 					compress : {
-						drop_console : true
+						sequences : false
 					}
 				},
 				files : {
-					'build/js/main.min.js' : ['src/js/main.js']
+					'build/js/main.js' : ['src/js/main.js']
 				}
 			}
 		},
 
-		watch : {
+		postcss : {
 			options : {
-				livereload: true
+				processors : [
+					require('autoprefixer')({browsers: 'last 5 versions'})
+				]
 			},
+			build : {
+				src : 'build/css/*.css'
+			}
+		},
+
+		browserSync : {
+			build : {
+				bsFiles : {
+					src : ['build/**/*.css', 'build/**/*.js', 'build/*.html']
+				},
+				options : {
+					watchTask: true,
+					server : {
+						baseDir : "./build/"
+					}
+				}
+			},
+		},
+
+		watch : {
 			index : {
 				files : ['index.html']
 			},
 			images : {
 				files : ['src/images/**'],
-				tasks : ['imagemin']
-			},
-			external : {
-				files : ['src/external/**'],
-				tasks : ['copy:external']
+				tasks : ['copy:imagesDev']
 			},
 			css : {
-				files : ['src/sass/**'],
-				tasks : ['sass']
+				files : ['src/sass/*.scss'],
+				tasks : ['sass:dev', 'postcss:dev']
 			},
 			js : {
-				files : ['src/js/**'],
-				tasks : ['uglify:dist']
+				files : ['src/js/*.js'],
+				tasks : ['uglify:dev']
 			}
 		}
 
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-sass');
-	grunt.loadNpmTasks('grunt-contrib-imagemin');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-browser-sync');
+	grunt.loadNpmTasks('grunt-postcss');
 
-	grunt.registerTask('default', ['sass', 'imagemin', 'copy', 'uglify:dist']);
-	grunt.registerTask('update', ['connect', 'watch']);
-	grunt.registerTask('finish', ['sass', 'imagemin', 'copy', 'uglify:finish']);
+
+	grunt.registerTask('default', ['sass:build', 'postcss:build', 'copy', 'uglify:build']);
+	grunt.registerTask('dev', ['browserSync:build', 'watch']);
+	grunt.registerTask('deploy', ['ftp-deploy:build']);
 }
