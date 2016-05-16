@@ -21,7 +21,8 @@ Be sure to have Node, NPM and Sass(Libsass) already installed.
 Medina Workflow was originally built thinking about how projects could be started more quickly.
 In order to use Medina Workflow as your project base, follow the steps below:
 
-1. Clone or download this Github repository: ```git clone https://github.com/lucas-medina/medina-workflow.git```
+1. Clone or download this Github repository: 
+```git clone https://github.com/lucas-medina/medina-workflow.git```
 2. Install the project dependencies through command line: ```npm install```
 3. Execute the tasks through these simple commands: 
 	- `grunt`: used to set every new file into the /build folder, that will be created for your project.
