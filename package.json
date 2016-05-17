@@ -16,6 +16,7 @@
   "homepage": "https://github.com/lucas-medina/medina-workflow#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.5",
+    "css-mqpacker": "^5.0.1",
     "grunt": "^0.4.5",
     "grunt-browser-sync": "^2.2.0",
     "grunt-cli": "^0.1.13",
