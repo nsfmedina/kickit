@@ -22,15 +22,9 @@ module.exports = function(grunt) {
 			},
 			index : {
 				cwd: 'src',
-				src: [ 'index.html' ],
+				src: [ 'src/*.html' ],
 				dest: 'build',
 				expand: true
-			}
-		},
-
-		concat : {
-			js : {
-
 			}
 		},
 
@@ -77,19 +71,20 @@ module.exports = function(grunt) {
 
 		watch : {
 			index : {
-				files : ['index.html']
+				files : ['src/index.html'],
+				tasks : ['copy:index']
 			},
 			images : {
 				files : ['src/images/**'],
-				tasks : ['copy:imagesDev']
+				tasks : ['copy:images']
 			},
 			css : {
 				files : ['src/sass/*.scss'],
-				tasks : ['sass:dev', 'postcss:dev']
+				tasks : ['sass:build', 'postcss:build']
 			},
 			js : {
 				files : ['src/js/*.js'],
-				tasks : ['uglify:dev']
+				tasks : ['uglify:build']
 			}
 		}
 
