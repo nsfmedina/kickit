@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 			},
 			index : {
 				cwd: 'src',
-				src: [ 'src/*.html' ],
+				src: [ '**/*.html' ],
 				dest: 'build',
 				expand: true
 			}
