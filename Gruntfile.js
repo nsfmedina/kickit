@@ -25,6 +25,12 @@ module.exports = function(grunt) {
 				src: [ '**/*.html' ],
 				dest: 'build',
 				expand: true
+			},
+			external : {
+				expand: true,
+				cwd: 'src/external/',
+				src : '**/*.*',
+				dest: 'build'
 			}
 		},
 
@@ -85,6 +91,10 @@ module.exports = function(grunt) {
 			js : {
 				files : ['src/js/*.js'],
 				tasks : ['uglify:build']
+			},
+			external : {
+				files : ['src/external/**'],
+				tasks : ['copy:external']
 			}
 		}
 
