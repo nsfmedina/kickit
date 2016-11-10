@@ -3,48 +3,22 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 
 		sass : {
-			build : {
+			kick : {
 				options : {
-					outputStyle : 'compact'
+					outputStyle : 'expanded',
+					precision: 4
 				},
 				files : {
-					'build/css/main.css' : 'src/sass/style.scss'
+					'dev/css/main.css' : 'src/scss/style.scss'
 				}
-			}
-		},
-
-		copy : {
-			images : {
-				expand : true,
-				cwd : 'src/images/',
-				src : '**/*.*',
-				dest : 'build/images/'
 			},
-			index : {
-				cwd: 'src',
-				src: [ '**/*.html' ],
-				dest: 'build',
-				expand: true
-			},
-			external : {
-				expand: true,
-				cwd: 'src/external/',
-				src : '**/*.*',
-				dest: 'build'
-			}
-		},
-
-		uglify : {
-			build : {
+			goal : {
 				options : {
-					beautify : true,
-					mangle: false,
-					compress : {
-						sequences : false
-					}
+					outputStyle: 'compressed',
+					precision: 4
 				},
 				files : {
-					'build/js/main.js' : ['src/js/main.js']
+					'build/css/main.min.css' : 'src/scss/style.scss'
 				}
 			}
 		},
@@ -53,16 +27,82 @@ module.exports = function(grunt) {
 			options : {
 				processors : [
 					require('autoprefixer')({browsers: 'last 5 versions'}),
+					// dangerous postcss plugin, indeed
 					require("css-mqpacker")()
 				]
 			},
-			build : {
-				src : 'build/css/*.css'
+			kick : {
+				src : 'dev/css/*.css'
+			},
+			goal : {
+				src : 'build/css/*css'
+			}
+		},
+
+		copy : {
+			kick : {
+				images : {
+					expand: true,
+					cwd : 'src',
+					src : 'images/**/*',
+					dest : 'dev'
+				}
+			}
+		},
+		imagemin : {
+			goal : {
+				files : [{
+					expand: true,
+					cwd : 'src/',
+					src : ['images/**/*'],
+					dest : 'build'
+				}]
+			}
+		},
+
+		uglify : {
+			kick : {
+				options : {
+					beautify : true,
+					mangle: false,
+					compress : {
+						sequences : false
+					}
+				},
+				files : {
+					'dev/js/main.js' : ['src/js/main.js']
+				}
+			},
+			goal : {
+				files : {
+					'build/js/main.min.js' : ['src/js/main.js'] 
+				}
+			}
+		},
+
+		concat : {
+			kick : {
+				vendor : {
+					files : {
+						"dev/vendor.js"
+					}
+				}
 			}
 		},
 
 		browserSync : {
-			build : {
+			kick : {
+				bsFiles : {
+					src : ['dev/**/*.css', 'dev/**/*.js', 'dev/*.html']
+				},
+				options : {
+					watchTask: true,
+					server : {
+						baseDir : "./dev/"
+					}
+				}
+			},
+			goal : {
 				bsFiles : {
 					src : ['build/**/*.css', 'build/**/*.js', 'build/*.html']
 				},
@@ -72,7 +112,7 @@ module.exports = function(grunt) {
 						baseDir : "./build/"
 					}
 				}
-			},
+			}
 		},
 
 		watch : {
@@ -109,7 +149,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-postcss');
 
 
-	grunt.registerTask('default', ['sass:build', 'postcss:build', 'copy', 'uglify:build']);
+	grunt.registerTask('default', ['sass:kick', 'postcss:kick', 'copy', 'uglify:kick']);
 	grunt.registerTask('dev', ['browserSync:build', 'watch']);
 	grunt.registerTask('deploy', ['ftp-deploy:build']);
 }
