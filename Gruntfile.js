@@ -40,23 +40,31 @@ module.exports = function(grunt) {
 		},
 
 		copy : {
-			kick : {
+			kickimages : {
+				expand: true,
+				cwd : 'src',
+				src : 'images/**/*',
+				dest : 'dev'
+			},
+			kickhtml : {
+				expand : true,
+				cwd : 'src',
+				src : '**/*.html',
+				dest : 'dev'
+			},
+			goal : {
 				images : {
 					expand: true,
 					cwd : 'src',
 					src : 'images/**/*',
-					dest : 'dev'
-				}
-			}
-		},
-		imagemin : {
-			goal : {
-				files : [{
-					expand: true,
-					cwd : 'src/',
-					src : ['images/**/*'],
 					dest : 'build'
-				}]
+				},
+				html : {
+					expand : true,
+					cwd : 'src',
+					src : '**/*.html',
+					dest : 'build'
+				}
 			}
 		},
 
@@ -84,7 +92,16 @@ module.exports = function(grunt) {
 			kick : {
 				vendor : {
 					files : {
-						"dev/vendor.js"
+						"dev/js/vendor.js" : ["src/vendor/js/**/*.js"],
+						"dev/css/vendor.css" : ["src/vendor/css/**/*.css"]
+					}
+				}
+			},
+			goal : {
+				vendor : {
+					files : {
+						"build/js/vendor.js" : ["src/vendor/js/**/*.js"],
+						"build/css/vendor.css" : ["src/vendor/css/**/*.css"]
 					}
 				}
 			}
@@ -98,7 +115,8 @@ module.exports = function(grunt) {
 				options : {
 					watchTask: true,
 					server : {
-						baseDir : "./dev/"
+						baseDir : "./dev/",
+						index: 'index.html'
 					}
 				}
 			},
@@ -109,7 +127,8 @@ module.exports = function(grunt) {
 				options : {
 					watchTask: true,
 					server : {
-						baseDir : "./build/"
+						baseDir : "./build/",
+						index: 'index.html'
 					}
 				}
 			}
@@ -117,24 +136,24 @@ module.exports = function(grunt) {
 
 		watch : {
 			index : {
-				files : ['src/index.html'],
-				tasks : ['copy:index']
+				files : ['src/**/*.html'],
+				tasks : ['copy:kickhtml']
 			},
 			images : {
 				files : ['src/images/**'],
-				tasks : ['copy:images']
+				tasks : ['copy:kickimages']
 			},
-			css : {
-				files : ['src/sass/*.scss'],
-				tasks : ['sass:build', 'postcss:build']
+			scss : {
+				files : ['src/scss/**/*.scss'],
+				tasks : ['sass:kick', 'postcss:kick']
 			},
 			js : {
 				files : ['src/js/*.js'],
-				tasks : ['uglify:build']
+				tasks : ['uglify:kick']
 			},
-			external : {
-				files : ['src/external/**'],
-				tasks : ['copy:external']
+			vendor : {
+				files : ['src/vendor/**'],
+				tasks : ['concat:kick']
 			}
 		}
 
@@ -149,7 +168,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-postcss');
 
 
-	grunt.registerTask('default', ['sass:kick', 'postcss:kick', 'copy', 'uglify:kick']);
-	grunt.registerTask('dev', ['browserSync:build', 'watch']);
+	grunt.registerTask('default', function(){
+		console.log('try kickin!');
+		console.log('Use grunt kick to start working!');
+	});
+	grunt.registerTask('kick', ['sass:kick', 'postcss:kick', 'copy:kickimages', 'copy:kickhtml', 'uglify:kick', 'concat:kick', 'browserSync:kick', 'watch']);
+	grunt.registerTask('goal', ['browserSync:build', 'watch']);
 	grunt.registerTask('deploy', ['ftp-deploy:build']);
 }

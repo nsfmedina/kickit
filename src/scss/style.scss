@@ -1,0 +1,67 @@
+// Are you ready?
+// Just unload all of the scss file, and feel free to work as you need ;)
+// Kick it!
+
+@keyframes flip {
+	0% {
+		transform: translateY(100%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+body {
+	margin: 0;
+	background-color: #345da9;
+}
+#page-wrapper {
+	h1, h2 {
+		font-family: 'Open Sans', sans-serif;
+		font-weight: 600;
+		padding: 1em 20px;
+		color: #fff;
+		margin: 0;
+	}
+	h1 {
+		font-size: 42px;
+		background-color: #1d438a;
+	}
+	h2 {
+		font-size: 28px;
+		font-weight: normal;
+	}
+}
+.animation-container {
+	font-size: 0;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	&:hover {
+		span {
+			padding: 90px 0;
+		}
+	}
+	&:active {
+		span {
+			padding: 120px 0;
+			opacity: .9;
+			animation-duration: .5s;
+		}
+	}
+	span {
+		display: inline-block;
+		width: 4%;
+		padding: 45px 0;
+		background-color: red;
+		transition: .2s ease;
+		animation: flip 1s ease-in-out 0s infinite alternate; 
+		@for $i from 1 through 25 {
+			&:nth-child(25n+#{$i}){
+				background-color: rgb(33,48,155 - ($i*3));
+				animation-delay: 0.1s * $i;
+			}
+		}
+	}
+}
