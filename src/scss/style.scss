@@ -56,11 +56,11 @@ body {
 		padding: 45px 0;
 		background-color: red;
 		transition: .2s ease;
-		animation: flip 1s ease-in-out 0s infinite alternate; 
+		animation: flip 1s cubic-bezier(0.79, 0.05, 0.58, 1) 0s infinite alternate both; 
 		@for $i from 1 through 25 {
 			&:nth-child(25n+#{$i}){
 				background-color: rgb(33,48,155 - ($i*3));
-				animation-delay: 0.1s * $i;
+				animation-delay: 0.05s * $i;
 			}
 		}
 	}
