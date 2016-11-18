@@ -16,7 +16,7 @@ body {
 	background-color: #345da9;
 }
 #page-wrapper {
-	h1, h2 {
+	h1, h2, p {
 		font-family: 'Open Sans', sans-serif;
 		font-weight: 600;
 		padding: 1em 20px;
@@ -30,6 +30,10 @@ body {
 	h2 {
 		font-size: 28px;
 		font-weight: normal;
+	}
+	p {
+		font-weight: normal;
+		font-size: 14px;
 	}
 }
 .animation-container {
@@ -47,7 +51,6 @@ body {
 		span {
 			padding: 120px 0;
 			opacity: .9;
-			animation-duration: .5s;
 		}
 	}
 	span {

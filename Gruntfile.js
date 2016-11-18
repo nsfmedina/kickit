@@ -90,21 +90,17 @@ module.exports = function(grunt) {
 
 		concat : {
 			kick : {
-				vendor : {
-					files : {
-						"dev/js/vendor.js" : ["src/vendor/js/**/*.js"],
-						"dev/css/vendor.css" : ["src/vendor/css/**/*.css"]
-					}
+				files : {
+					"dev/js/vendor.js" : ["src/vendor/js/**/*.js"],
+					"dev/css/vendor.css" : ["src/vendor/css/**/*.css"]
 				}
 			},
 			goal : {
-				vendor : {
-					files : {
-						"build/js/vendor.js" : ["src/vendor/js/**/*.js"],
-						"build/css/vendor.css" : ["src/vendor/css/**/*.css"]
-					}
+				files : {
+					"build/js/vendor.js" : ["src/vendor/js/**/*.js"],
+					"build/css/vendor.css" : ["src/vendor/css/**/*.css"]
 				}
-			}
+			},
 		},
 
 		browserSync : {
@@ -152,7 +148,7 @@ module.exports = function(grunt) {
 				tasks : ['uglify:kick']
 			},
 			vendor : {
-				files : ['src/vendor/**'],
+				files : ['src/vendor/css/**', 'src/vendor/js/**'],
 				tasks : ['concat:kick']
 			}
 		}
@@ -173,6 +169,5 @@ module.exports = function(grunt) {
 		console.log('Use grunt kick to start working!');
 	});
 	grunt.registerTask('kick', ['sass:kick', 'postcss:kick', 'copy:kickimages', 'copy:kickhtml', 'uglify:kick', 'concat:kick', 'browserSync:kick', 'watch']);
-	grunt.registerTask('goal', ['browserSync:build', 'watch']);
-	grunt.registerTask('deploy', ['ftp-deploy:build']);
+	// grunt.registerTask('goal', ['browserSync:build', 'watch']);
 }
