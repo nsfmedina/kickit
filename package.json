@@ -1,32 +1,33 @@
 {
-    "name": "KickIt",
-    "version": "0.0.1",
-    "description": "Personal automated workflow to skyrocket small projects through Grunt!",
-    "private": "true",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/lucas-medina/kickit.git"
-    },
-    "keywords": [
-        "Grunt",
-        "workflow",
-        "automated",
-        "medina"
-    ],
-    "author": "Lucas Medina",
-    "homepage": "https://github.com/lucas-medina/kickit#readme",
-    "devDependencies": {
-        "autoprefixer": "^6.3.5",
-        "css-mqpacker": "^5.0.1",
-        "grunt": "^0.4.5",
-        "grunt-browser-sync": "^2.2.0",
-        "grunt-cli": "^0.1.13",
-        "grunt-contrib-concat": "^1.0.0",
-        "grunt-contrib-copy": "^0.8.0",
-        "grunt-contrib-uglify": "^0.9.1",
-        "grunt-contrib-watch": "^0.6.1",
-        "grunt-postcss": "^0.8.0",
-        "grunt-processhtml": "^0.3.13",
-        "grunt-sass": "^1.0.0"
-    }
+  "name": "KickIt",
+  "version": "0.0.1",
+  "description": "Personal automated workflow to skyrocket small projects through Grunt!",
+  "private": "true",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucas-medina/kickit.git"
+  },
+  "keywords": [
+    "Grunt",
+    "workflow",
+    "automated",
+    "kickit"
+  ],
+  "author": "Lucas Medina",
+  "homepage": "https://github.com/lucas-medina/kickit#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.3.5",
+    "css-mqpacker": "^5.0.1",
+    "grunt": "^0.4.5",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-postcss": "^0.8.0",
+    "grunt-processhtml": "^0.3.13",
+    "grunt-sass": "^1.0.0",
+    "node-sass": "^3.13.0"
+  }
 }
